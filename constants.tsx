@@ -36,10 +36,10 @@ export const VIDEO_TESTIMONIALS: VideoTestimonial[] = [
   },
   {
     id: 4,
-    name: "Jucilene",
+    name: "Jucy",
     result: "R$ 6.100 em 1 dia",
     videoUrl: "", // ADICIONE O LINK DO VIDEO AQUI
-    thumbnailUrl: "https://placehold.co/1080x1920/1a1a1a/d4af37?text=Jucilene+%0A+R$+6.1+MIL"
+    thumbnailUrl: "https://placehold.co/1080x1920/1a1a1a/d4af37?text=Jucy+%0A+R$+6.1+MIL"
   }
 ];
 
