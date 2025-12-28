@@ -15,28 +15,28 @@ export const HERO_IMAGE = "https://i.imgur.com/cLklV44.jpeg";
 export const VIDEO_TESTIMONIALS: VideoTestimonial[] = [
   {
     id: 1,
-    name: "Dra. Ana Silva",
+    name: "Dra. Camilla",
     result: "Agenda Lotada",
     videoUrl: "https://i.imgur.com/72oPLaz.mp4",
     thumbnailUrl: "https://i.imgur.com/72oPLaz.jpg"
   },
   {
     id: 2,
-    name: "Clínica Renovare",
+    name: "Dr. William",
     result: "Faturamento Recorde",
     videoUrl: "https://i.imgur.com/cMtwYDD.mp4",
     thumbnailUrl: "https://i.imgur.com/cMtwYDD.jpg"
   },
   {
     id: 3,
-    name: "Estética Avançada",
+    name: "Dra. Siara",
     result: "Retorno Imediato",
     videoUrl: "https://i.imgur.com/BxynwtG.mp4",
     thumbnailUrl: "https://i.imgur.com/BxynwtG.jpg"
   },
   {
     id: 4,
-    name: "Dra. Juliana",
+    name: "Jucy excursões",
     result: "Estratégia Validada",
     videoUrl: "https://i.imgur.com/NAnkN5X.mp4",
     thumbnailUrl: "https://i.imgur.com/NAnkN5X.jpg"
