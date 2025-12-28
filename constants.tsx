@@ -15,31 +15,31 @@ export const HERO_IMAGE = "https://i.imgur.com/cLklV44.jpeg";
 export const VIDEO_TESTIMONIALS: VideoTestimonial[] = [
   {
     id: 1,
-    name: "Camila",
-    result: "R$ 23 MIL em 1 dia",
-    videoUrl: "", // ADICIONE O LINK DO VIDEO AQUI
-    thumbnailUrl: "https://placehold.co/1080x1920/1a1a1a/d4af37?text=Camila+%0A+R$+23+MIL"
+    name: "Dra. Ana Silva",
+    result: "Agenda Lotada",
+    videoUrl: "https://i.imgur.com/72oPLaz.mp4",
+    thumbnailUrl: "https://i.imgur.com/72oPLaz.jpg"
   },
   {
     id: 2,
-    name: "William",
-    result: "R$ 25 MIL com Grupo VIP",
-    videoUrl: "", // ADICIONE O LINK DO VIDEO AQUI
-    thumbnailUrl: "https://placehold.co/1080x1920/1a1a1a/d4af37?text=William+%0A+R$+25+MIL"
+    name: "Clínica Renovare",
+    result: "Faturamento Recorde",
+    videoUrl: "https://i.imgur.com/cMtwYDD.mp4",
+    thumbnailUrl: "https://i.imgur.com/cMtwYDD.jpg"
   },
   {
     id: 3,
-    name: "Siara",
-    result: "R$ 9 MIL (Iniciante)",
-    videoUrl: "", // ADICIONE O LINK DO VIDEO AQUI
-    thumbnailUrl: "https://placehold.co/1080x1920/1a1a1a/d4af37?text=Siara+%0A+R$+9+MIL"
+    name: "Estética Avançada",
+    result: "Retorno Imediato",
+    videoUrl: "https://i.imgur.com/BxynwtG.mp4",
+    thumbnailUrl: "https://i.imgur.com/BxynwtG.jpg"
   },
   {
     id: 4,
-    name: "Jucy",
-    result: "R$ 6.100 em 1 dia",
-    videoUrl: "", // ADICIONE O LINK DO VIDEO AQUI
-    thumbnailUrl: "https://placehold.co/1080x1920/1a1a1a/d4af37?text=Jucy+%0A+R$+6.1+MIL"
+    name: "Dra. Juliana",
+    result: "Estratégia Validada",
+    videoUrl: "https://i.imgur.com/NAnkN5X.mp4",
+    thumbnailUrl: "https://i.imgur.com/NAnkN5X.jpg"
   }
 ];
 

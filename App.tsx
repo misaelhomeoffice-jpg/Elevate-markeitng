@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Instagram, MapPin, CheckCircle2, ChevronRight, ArrowDown } from 'lucide-react';
+import { Instagram, MapPin, CheckCircle2, ChevronRight, ArrowDown, Play, Image as ImageIcon } from 'lucide-react';
 import { EXPERT_DATA, HERO_IMAGE, GALLERY_IMAGES, FEATURES, VIDEO_TESTIMONIALS } from './constants';
 import Button from './components/Button';
 import Lightbox from './components/Lightbox';
@@ -7,6 +7,7 @@ import VideoCard from './components/VideoCard';
 
 const App: React.FC = () => {
   const [lightboxState, setLightboxState] = useState({ isOpen: false, src: '', alt: '' });
+  const [activeTab, setActiveTab] = useState<'video' | 'gallery'>('video');
 
   const openLightbox = (src: string, alt: string) => {
     setLightboxState({ isOpen: true, src, alt });
@@ -107,55 +108,91 @@ const App: React.FC = () => {
         </div>
       </section>
 
-      {/* --- RESULTADOS REAIS (VÍDEOS E GALERIA) --- */}
+      {/* --- RESULTADOS REAIS (TABS) --- */}
       <section className="py-20 bg-brand-gray">
         <div className="container mx-auto px-6">
-          <div className="text-center max-w-2xl mx-auto mb-16">
+          <div className="text-center max-w-2xl mx-auto mb-12">
             <h2 className="font-serif text-3xl md:text-4xl text-brand-dark mb-4">Resultados que Falam</h2>
             <p className="text-gray-500">
-              Contra fatos não há argumentos. Veja o impacto que geramos nos nossos parceiros.
+              Contra fatos não há argumentos. Escolha como quer ver nossos resultados.
             </p>
           </div>
 
-          {/* Vídeos Section */}
-          <div className="mb-16">
-            <h3 className="text-2xl font-bold text-center mb-8 flex items-center justify-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-              Depoimentos em Vídeo
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
-              {VIDEO_TESTIMONIALS.map((video) => (
-                <VideoCard 
-                  key={video.id}
-                  videoUrl={video.videoUrl}
-                  thumbnailUrl={video.thumbnailUrl}
-                  name={video.name}
-                  result={video.result}
-                />
-              ))}
+          {/* TABS NAVIGATION */}
+          <div className="flex justify-center mb-12">
+            <div className="bg-white p-1.5 rounded-full shadow-md inline-flex items-center gap-2 border border-gray-100">
+              <button
+                onClick={() => setActiveTab('video')}
+                className={`
+                  flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold transition-all duration-300
+                  ${activeTab === 'video' 
+                    ? 'bg-brand-black text-white shadow-lg transform scale-105' 
+                    : 'bg-transparent text-gray-500 hover:text-brand-dark'}
+                `}
+              >
+                <Play className={`w-4 h-4 ${activeTab === 'video' ? 'text-brand-gold fill-brand-gold' : ''}`} />
+                Depoimentos em Vídeo
+              </button>
+              <button
+                onClick={() => setActiveTab('gallery')}
+                className={`
+                  flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold transition-all duration-300
+                  ${activeTab === 'gallery' 
+                    ? 'bg-brand-black text-white shadow-lg transform scale-105' 
+                    : 'bg-transparent text-gray-500 hover:text-brand-dark'}
+                `}
+              >
+                <ImageIcon className={`w-4 h-4 ${activeTab === 'gallery' ? 'text-brand-gold' : ''}`} />
+                Galeria de Resultados
+              </button>
             </div>
           </div>
 
-          {/* Galeria Grid */}
-          <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
-            {GALLERY_IMAGES.map((img) => (
-              <div 
-                key={img.id} 
-                className="break-inside-avoid relative group cursor-zoom-in rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
-                onClick={() => openLightbox(img.url, img.alt)}
-              >
-                <img 
-                  src={img.url} 
-                  alt={img.alt} 
-                  loading="lazy"
-                  className="w-full h-auto transform group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300"></div>
-              </div>
-            ))}
-          </div>
+          {/* TAB CONTENT: VIDEOS */}
+          {activeTab === 'video' && (
+            <div className="animate-in fade-in zoom-in-95 duration-500">
+              {VIDEO_TESTIMONIALS.length > 0 ? (
+                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+                 {VIDEO_TESTIMONIALS.map((video) => (
+                   <VideoCard 
+                     key={video.id}
+                     videoUrl={video.videoUrl}
+                     thumbnailUrl={video.thumbnailUrl}
+                     name={video.name}
+                     result={video.result}
+                   />
+                 ))}
+               </div>
+              ) : (
+                <div className="text-center py-12 text-gray-500">
+                  <p>Nenhum vídeo disponível no momento.</p>
+                </div>
+              )}
+            </div>
+          )}
 
-          <p className="text-center text-xs text-gray-400 mt-8 italic">
+          {/* TAB CONTENT: GALLERY */}
+          {activeTab === 'gallery' && (
+            <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6 animate-in fade-in zoom-in-95 duration-500">
+              {GALLERY_IMAGES.map((img) => (
+                <div 
+                  key={img.id} 
+                  className="break-inside-avoid relative group cursor-zoom-in rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+                  onClick={() => openLightbox(img.url, img.alt)}
+                >
+                  <img 
+                    src={img.url} 
+                    alt={img.alt} 
+                    loading="lazy"
+                    className="w-full h-auto transform group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300"></div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <p className="text-center text-xs text-gray-400 mt-12 italic">
             *Resultados podem variar de acordo com o comprometimento e cenário de cada clínica.
           </p>
         </div>
