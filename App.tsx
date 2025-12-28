@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Instagram, MapPin, CheckCircle2, ChevronRight, ArrowDown, Play } from 'lucide-react';
+import { Instagram, MapPin, CheckCircle2, ChevronRight, ArrowDown } from 'lucide-react';
 import { EXPERT_DATA, HERO_IMAGE, GALLERY_IMAGES, FEATURES, VIDEO_TESTIMONIALS } from './constants';
 import Button from './components/Button';
 import Lightbox from './components/Lightbox';
+import VideoCard from './components/VideoCard';
 
 const App: React.FC = () => {
   const [lightboxState, setLightboxState] = useState({ isOpen: false, src: '', alt: '' });
-  const [playingVideo, setPlayingVideo] = useState<number | null>(null);
 
   const openLightbox = (src: string, alt: string) => {
     setLightboxState({ isOpen: true, src, alt });
@@ -33,6 +33,7 @@ const App: React.FC = () => {
             src={HERO_IMAGE} 
             alt="Misael Souza" 
             className="w-full h-full object-cover object-top opacity-60 lg:opacity-100 lg:w-1/2 lg:ml-auto"
+            fetchPriority="high"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/80 to-transparent lg:bg-gradient-to-r lg:from-brand-black lg:via-brand-black lg:to-transparent"></div>
         </div>
@@ -124,38 +125,13 @@ const App: React.FC = () => {
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
               {VIDEO_TESTIMONIALS.map((video) => (
-                <div key={video.id} className="relative aspect-[9/16] bg-black rounded-2xl overflow-hidden shadow-xl border border-white/10 group">
-                  {playingVideo === video.id ? (
-                    <video 
-                      src={video.videoUrl} 
-                      controls 
-                      autoPlay 
-                      className="w-full h-full object-cover"
-                    >
-                      Seu navegador não suporta vídeos.
-                    </video>
-                  ) : (
-                    <div 
-                      className="absolute inset-0 cursor-pointer"
-                      onClick={() => setPlayingVideo(video.id)}
-                    >
-                      <img 
-                        src={video.thumbnailUrl} 
-                        alt={video.name}
-                        className="w-full h-full object-cover opacity-80 group-hover:opacity-60 transition-opacity"
-                      />
-                      <div className="absolute inset-0 flex flex-col items-center justify-center">
-                        <div className="w-16 h-16 bg-brand-gold rounded-full flex items-center justify-center text-brand-black mb-4 shadow-lg transform group-hover:scale-110 transition-transform">
-                          <Play fill="currentColor" className="ml-1" />
-                        </div>
-                        <div className="text-center px-4">
-                          <h4 className="text-white font-bold text-xl">{video.name}</h4>
-                          <p className="text-brand-gold font-bold">{video.result}</p>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </div>
+                <VideoCard 
+                  key={video.id}
+                  videoUrl={video.videoUrl}
+                  thumbnailUrl={video.thumbnailUrl}
+                  name={video.name}
+                  result={video.result}
+                />
               ))}
             </div>
           </div>
