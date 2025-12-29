@@ -4,8 +4,16 @@ import { EXPERT_DATA, HERO_IMAGE, GALLERY_IMAGES, FEATURES, VIDEO_TESTIMONIALS }
 import Button from './components/Button';
 import Lightbox from './components/Lightbox';
 import VideoCard from './components/VideoCard';
+import Quiz from './components/Quiz';
+import QuizResult from './components/QuizResult';
+
+type ViewState = 'quiz' | 'result' | 'main';
 
 const App: React.FC = () => {
+  // Navigation State
+  const [currentView, setCurrentView] = useState<ViewState>('quiz');
+
+  // Main App State
   const [lightboxState, setLightboxState] = useState({ isOpen: false, src: '', alt: '' });
   const [activeTab, setActiveTab] = useState<'video' | 'gallery'>('video');
 
@@ -17,8 +25,18 @@ const App: React.FC = () => {
     setLightboxState({ ...lightboxState, isOpen: false });
   };
 
+  // --- NAVIGATION LOGIC ---
+  if (currentView === 'quiz') {
+    return <Quiz onComplete={() => setCurrentView('result')} />;
+  }
+
+  if (currentView === 'result') {
+    return <QuizResult onContinue={() => setCurrentView('main')} />;
+  }
+
+  // --- MAIN LANDING PAGE ---
   return (
-    <div className="min-h-screen font-sans">
+    <div className="min-h-screen font-sans animate-in fade-in duration-700">
       <Lightbox 
         isOpen={lightboxState.isOpen} 
         imageSrc={lightboxState.src} 
