@@ -36,7 +36,7 @@ const App: React.FC = () => {
 
   // --- MAIN LANDING PAGE (ULTRA COMPACT MOBILE) ---
   return (
-    <div className="min-h-screen font-sans animate-in fade-in duration-700 bg-brand-gray pb-20">
+    <div className="min-h-screen font-sans animate-in fade-in duration-700 bg-brand-gray pb-10">
       <Lightbox 
         isOpen={lightboxState.isOpen} 
         imageSrc={lightboxState.src} 
@@ -76,7 +76,7 @@ const App: React.FC = () => {
 
            {/* CTA Principal */}
            <div className="mb-6">
-              <Button fullWidth={true} className="py-3 text-sm shadow-[0_0_20px_rgba(212,175,55,0.3)] animate-pulse" text="AGENDAR CONSULTA GRÁTIS" />
+              <Button fullWidth={true} className="py-3 text-sm shadow-[0_0_20px_rgba(212,175,55,0.3)] animate-pulse" text="Agendar uma reunião sem compromisso" />
            </div>
 
            {/* Mini Authority Bar (Integrada no Hero) */}
@@ -156,7 +156,7 @@ const App: React.FC = () => {
       {/* --- DIFERENCIAIS (Lista Horizontal / Grid Denso) --- */}
       <section className="px-4 py-4">
          <h2 className="font-serif text-lg text-brand-dark font-bold mb-3 text-center">O que você recebe</h2>
-         <div className="grid grid-cols-2 gap-2">
+         <div className="grid grid-cols-2 gap-2 mb-8">
             {[
                { icon: <Zap size={14} />, title: "Zero Gastos", desc: "Sem tráfego pago" },
                { icon: <Layout size={14} />, title: "Site Premium", desc: "Design de ponta" },
@@ -172,15 +172,13 @@ const App: React.FC = () => {
                </div>
             ))}
          </div>
+         
+         {/* CTA Final (Substituindo o Sticky Footer) */}
+         <div className="text-center">
+            <Button fullWidth={true} className="py-4 text-sm font-bold shadow-lg" text="Agendar uma reunião sem compromisso" />
+            <p className="text-[10px] text-gray-400 mt-3">Poucas vagas disponíveis para este mês.</p>
+         </div>
       </section>
-
-      {/* --- STICKY FOOTER CTA --- */}
-      <div className="fixed bottom-0 left-0 right-0 p-4 bg-white border-t border-gray-100 z-50">
-         <Button fullWidth={true} className="py-3 text-sm font-bold" text="QUERO MEU PLANO AGORA" />
-      </div>
-
-      {/* Spacer for sticky footer */}
-      <div className="h-16"></div>
     </div>
   );
 };
