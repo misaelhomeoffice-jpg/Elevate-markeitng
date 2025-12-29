@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Instagram, Play, Image as ImageIcon, Star, Check, Zap, Users, Layout } from 'lucide-react';
+import { Instagram, Play, Image as ImageIcon, Star, Check, Zap, Users, Layout, MapPin } from 'lucide-react';
 import { EXPERT_DATA, HERO_IMAGE, GALLERY_IMAGES, FEATURES, VIDEO_TESTIMONIALS } from './constants';
 import Button from './components/Button';
 import Lightbox from './components/Lightbox';
@@ -36,7 +36,7 @@ const App: React.FC = () => {
 
   // --- MAIN LANDING PAGE (ULTRA COMPACT MOBILE) ---
   return (
-    <div className="min-h-screen font-sans animate-in fade-in duration-700 bg-brand-gray pb-10">
+    <div className="min-h-screen font-sans animate-in fade-in duration-700 bg-brand-gray pb-0">
       <Lightbox 
         isOpen={lightboxState.isOpen} 
         imageSrc={lightboxState.src} 
@@ -173,12 +173,49 @@ const App: React.FC = () => {
             ))}
          </div>
          
-         {/* CTA Final (Substituindo o Sticky Footer) */}
-         <div className="text-center">
+         {/* CTA Final */}
+         <div className="text-center mb-6">
             <Button fullWidth={true} className="py-4 text-sm font-bold shadow-lg" text="Agendar uma reunião sem compromisso" />
             <p className="text-[10px] text-gray-400 mt-3">Poucas vagas disponíveis para este mês.</p>
          </div>
       </section>
+
+      {/* --- FOOTER & CONTACT INFO --- */}
+      <footer className="bg-brand-black text-white py-10 px-6 rounded-t-3xl shadow-[0_-10px_40px_-15px_rgba(0,0,0,0.3)]">
+         <div className="flex flex-col items-center text-center gap-6">
+            
+            <div className="w-12 h-1 bg-brand-gold/30 rounded-full mb-2"></div>
+
+            {/* Instagram Link */}
+            <a 
+              href={EXPERT_DATA.instagramLink} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 text-brand-gold border border-brand-gold/30 px-6 py-3 rounded-2xl hover:bg-brand-gold/10 hover:scale-105 transition-all w-full justify-center max-w-xs"
+            >
+              <Instagram size={20} />
+              <span className="font-bold tracking-wide">@elevatemarketing.ofc</span>
+            </a>
+
+            {/* Address / Location */}
+            <div className="flex flex-col items-center gap-2 opacity-70">
+              <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white">
+                 <MapPin size={16} />
+              </div>
+              <div>
+                 <p className="text-xs uppercase tracking-widest font-bold text-gray-500 mb-1">Localização</p>
+                 <p className="text-sm font-medium text-white">{EXPERT_DATA.location}</p>
+              </div>
+            </div>
+
+            {/* Copyright */}
+            <div className="w-full border-t border-white/5 pt-6 mt-2">
+              <p className="text-[10px] text-gray-600">
+                © {new Date().getFullYear()} {EXPERT_DATA.name}.<br/>Todos os direitos reservados.
+              </p>
+            </div>
+         </div>
+      </footer>
     </div>
   );
 };
